@@ -4,13 +4,13 @@
   "private": true,
 
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "export": "next build",
-    "start": "next start -p 3000",
-    "lint": "next lint",
-    "test": "echo \"(tests disabled)\" && exit 0"
-  },
+  "dev": "next dev --turbopack",
+  "build": "next build",
+  "export": "next export",
+  "start": "next start -p 3000",
+  "lint": "next lint",
+  "test": "vitest run"
+},
 
   "dependencies": {
     "@radix-ui/react-compose-refs": "^1.0.2",
