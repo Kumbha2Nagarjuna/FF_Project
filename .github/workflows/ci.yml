@@ -7,9 +7,9 @@ on:
     branches: [ main ]
 
 permissions:
-  contents: read        # for checkout
-  pages: write          # allow publish
-  id-token: write       # OIDC for Pages
+  contents: read
+  pages: write
+  id-token: write
 
 env:
   NODE_VERSION: 20
@@ -21,46 +21,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node ${{ env.NODE_VERSION }}
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
+          cache: 'npm'
 
-      - name: Install deps
+      - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build check
-        run: npm run build          # Next compile + typecheck
+      - name: Build site
+        run: npm run build
 
-      - name: Unit tests (Vitest)
-        run: npm run test  # avoids watch mode in CI
+      - name: Run unit tests (Vitest)
+        run: npm run test
 
-      # ✨ uncomment if you keep Playwright tests
-      # - name: Install Playwright browsers
-      #   run: npx playwright install --with-deps
-      #
-      # - name: E2E tests
-      #   run: npx playwright test --reporter=dot
+      - name: Export static site
+        run: npm run export
 
-      - name: Static export for Pages
-        run: |
-          npm run export           # script shown below; emits ./out
-          echo "EXPORT DONE, contents of ./out:"
-          ls -R out | head
-
-      - name: Upload static site
+      - name: Upload static site artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
 
   deploy:
     needs: build-test
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ubuntu-latest
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
