@@ -78,11 +78,3 @@ FF_Project/
 ├── tsconfig.json                # TypeScript configuration
 └── vitest.config.js             # Vitest configuration
 ```
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
