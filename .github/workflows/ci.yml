@@ -37,7 +37,7 @@ jobs:
         run: timeout 60s npm run test || true
 
       - name: Export static site
-        run: npm run export
+        run: npm run build
 
       - name: Upload static site artifact
         uses: actions/upload-pages-artifact@v3
