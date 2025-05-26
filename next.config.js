@@ -1,13 +1,8 @@
-
-
 /** @type {import('next').NextConfig} */
-const repo = 'next-report-app';     // ← your repository name
-
-export default {
-  output: 'export',
-
-  // ---- GitHub Pages settings ----
-  basePath: `/${repo}`,
-  assetPrefix: `/${repo}/`,
-  trailingSlash: true,              // nicer URLs for static hosting
+const nextConfig = {
+  output: 'export', // for static export
+  basePath: '/FF_Project',
+  assetPrefix: '/FF_Project/',
 };
+
+module.exports = nextConfig;
