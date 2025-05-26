@@ -1,7 +1,8 @@
 name: CI + Pages Deploy
-
+    
 on:
   push:
+    paths-ignore: 'rc.yml'
     branches: [ main ]
   pull_request:
     branches: [ main ]
